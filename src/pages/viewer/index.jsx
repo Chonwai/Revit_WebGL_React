@@ -44,7 +44,7 @@ export default function Viewer() {
         scene.add(light2);
         var object = loader.parse(model);
         var materialObj = new window.THREE.MeshStandardMaterial({
-            color: 0xdeb887,
+            color: 0x777777,
             roughness: 0.5,
         });
         object.traverse(function (child) {
