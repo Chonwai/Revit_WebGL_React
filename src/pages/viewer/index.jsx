@@ -27,19 +27,25 @@ export default function Viewer() {
         camera.position.set(5000, 5000, 15000);
         controls = new window.THREE.OrbitControls(camera, renderer.domElement);
         controls.update();
+        renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth * 0.75, window.innerHeight * 0.75);
         document.getElementById('viewer').appendChild(renderer.domElement);
         renderer.setClearColor(0xfff6ff);
     };
 
     var loadJSONModel = function () {
-        let spotLight = new window.THREE.SpotLight(0xffffff);
-        spotLight.position.set(0, 5000, 5000);
-        scene.add(spotLight);
+        const light = new window.THREE.SpotLight(0xffffff, 1);
+        light.castShadow = true;
+        light.position.set(-5000, 10000, -1000);
+        scene.add(light);
+        const light2 = new window.THREE.SpotLight(0xffffff, 1);
+        light2.castShadow = true;
+        light2.position.set(5000, 10000, -1000);
+        scene.add(light2);
         var object = loader.parse(model);
-        var materialObj = new window.THREE.MeshPhongMaterial({
-            color: 0xffffff,
-            overdraw: 0.3,
+        var materialObj = new window.THREE.MeshStandardMaterial({
+            color: 0xdeb887,
+            roughness: 0.5,
         });
         object.traverse(function (child) {
             if (child instanceof window.THREE.Mesh) {
@@ -64,6 +70,8 @@ export default function Viewer() {
     var refreshModel = function () {
         console.log('Refresh!');
         console.log(scene);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth * 0.75, window.innerHeight * 0.75);
         render();
     };
 
@@ -156,6 +164,9 @@ export default function Viewer() {
             <main className="p-8">
                 <div className="nav flex justify-center items-center">
                     <div className="control w-1/2 flex justify-start">
+                        <button className="p-4" onClick={refreshModel}>
+                            Refresh Viewer
+                        </button>
                         <button className="p-4" onClick={addCupboard}>
                             Add Cupboard
                         </button>
