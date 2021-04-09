@@ -6,7 +6,6 @@ import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
 import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import Alert from '@material-ui/lab/Alert';
 
 var scene;
 var controls;
@@ -183,9 +182,9 @@ export default function Viewer() {
             <main className="p-8">
                 <div className="nav flex justify-center items-center">
                     <div className="price w-full mb-8 flex justify-center">
-                        <Alert className="w-1/2" severity="info">
+                        <h2 className="text-xl font-semibold">
                             Price: $<span id="price">1000</span>
-                        </Alert>
+                        </h2>
                     </div>
                 </div>
                 <div id="viewer" className="relative flex justify-center">
