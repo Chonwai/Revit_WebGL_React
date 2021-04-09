@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
 import Model from '../../models/room.rvt.json';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import IconButton from '@material-ui/core/IconButton';
+import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
+import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import Alert from '@material-ui/lab/Alert';
 
 var scene;
 var controls;
@@ -175,27 +182,50 @@ export default function Viewer() {
         <div>
             <main className="p-8">
                 <div className="nav flex justify-center items-center">
-                    <div className="control w-1/2 flex justify-start">
-                        <button className="p-4" onClick={addCupboard}>
-                            Add Cupboard
-                        </button>
-                        <button className="p-4" onClick={reduceCupboard}>
-                            Reduce Cupboard
-                        </button>
-                        <button className="p-4" onClick={refreshModel}>
-                            Refresh Viewer
-                        </button>
-                        <button className="p-4" onClick={exportSence}>
-                            Export Sence
-                        </button>
-                    </div>
-                    <div className="price w-1/2 flex justify-end">
-                        <p>
+                    <div className="price w-full mb-8 flex justify-center">
+                        <Alert className="w-1/2" severity="info">
                             Price: $<span id="price">1000</span>
-                        </p>
+                        </Alert>
                     </div>
                 </div>
-                <div id="viewer" className="flex justify-center"></div>
+                <div id="viewer" className="relative flex justify-center">
+                    <div className="absolute bottom-0 control flex justify-start m-4">
+                        <ButtonGroup
+                            className="border border-indigo-600"
+                            variant="text"
+                            color="primary"
+                        >
+                            <IconButton
+                                color="primary"
+                                aria-label="Add 1 Cupboard"
+                                onClick={addCupboard}
+                            >
+                                <ExposurePlus1Icon />
+                            </IconButton>
+                            <IconButton
+                                color="primary"
+                                aria-label="Reduce 1 Cupboard"
+                                onClick={reduceCupboard}
+                            >
+                                <ExposureNeg1Icon />
+                            </IconButton>
+                            <IconButton
+                                color="primary"
+                                aria-label="Refresh the Viewer"
+                                onClick={refreshModel}
+                            >
+                                <RefreshIcon />
+                            </IconButton>
+                            <IconButton
+                                color="primary"
+                                aria-label="Export the Sence"
+                                onClick={exportSence}
+                            >
+                                <GetAppIcon />
+                            </IconButton>
+                        </ButtonGroup>
+                    </div>
+                </div>
             </main>
         </div>
     );

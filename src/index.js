@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Viewer from './pages/viewer';
+import ButtonAppBar from './components/ButtonAppBar';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <ButtonAppBar />
         <Viewer />
     </React.StrictMode>,
     document.getElementById('root')
