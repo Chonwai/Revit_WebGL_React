@@ -155,6 +155,18 @@ export default function Viewer() {
         }
     };
 
+    var exportSence = function () {
+        var exporter = new window.THREE.OBJExporter();
+        var result = exporter.parse(scene);
+        console.log(result);
+        var data = new Blob([result]);
+        var objURL = window.URL.createObjectURL(data);
+        var tempLink = document.createElement('a');
+        tempLink.href = objURL;
+        tempLink.setAttribute('download', 'result.obj');
+        tempLink.click();
+    };
+
     var render = function () {
         renderer.render(scene, camera);
     };
@@ -164,14 +176,17 @@ export default function Viewer() {
             <main className="p-8">
                 <div className="nav flex justify-center items-center">
                     <div className="control w-1/2 flex justify-start">
-                        <button className="p-4" onClick={refreshModel}>
-                            Refresh Viewer
-                        </button>
                         <button className="p-4" onClick={addCupboard}>
                             Add Cupboard
                         </button>
                         <button className="p-4" onClick={reduceCupboard}>
                             Reduce Cupboard
+                        </button>
+                        <button className="p-4" onClick={refreshModel}>
+                            Refresh Viewer
+                        </button>
+                        <button className="p-4" onClick={exportSence}>
+                            Export Sence
                         </button>
                     </div>
                     <div className="price w-1/2 flex justify-end">
